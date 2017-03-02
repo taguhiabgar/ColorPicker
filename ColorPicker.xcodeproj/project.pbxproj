@@ -15,6 +15,8 @@
 		3D57672F1E66C8410025BC7E /* ColorPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57672E1E66C8410025BC7E /* ColorPickerTests.swift */; };
 		3D57673A1E66C8410025BC7E /* ColorPickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5767391E66C8410025BC7E /* ColorPickerUITests.swift */; };
 		3D57674A1E66ED2F0025BC7E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5767491E66ED2F0025BC7E /* UIColor.swift */; };
+		3D57674D1E67011E0025BC7E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57674C1E67011E0025BC7E /* Colors.swift */; };
+		3D5767541E6804110025BC7E /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5767531E6804110025BC7E /* CGRect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		3D5767391E66C8410025BC7E /* ColorPickerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerUITests.swift; sourceTree = "<group>"; };
 		3D57673B1E66C8410025BC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D5767491E66ED2F0025BC7E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		3D57674C1E67011E0025BC7E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3D5767531E6804110025BC7E /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				3D57674B1E66ED350025BC7E /* Base */,
+				3D5767521E6803FC0025BC7E /* Extensions */,
 				3D5767191E66C8410025BC7E /* AppDelegate.swift */,
 				3D57671B1E66C8410025BC7E /* ViewController.swift */,
-				3D5767491E66ED2F0025BC7E /* UIColor.swift */,
+				3D57674C1E67011E0025BC7E /* Colors.swift */,
 			);
 			path = ColorPicker;
 			sourceTree = "<group>";
@@ -134,6 +139,15 @@
 				3D5767251E66C8410025BC7E /* Info.plist */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		3D5767521E6803FC0025BC7E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3D5767491E66ED2F0025BC7E /* UIColor.swift */,
+				3D5767531E6804110025BC7E /* CGRect.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,8 +288,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D57671C1E66C8410025BC7E /* ViewController.swift in Sources */,
+				3D57674D1E67011E0025BC7E /* Colors.swift in Sources */,
 				3D57674A1E66ED2F0025BC7E /* UIColor.swift in Sources */,
 				3D57671A1E66C8410025BC7E /* AppDelegate.swift in Sources */,
+				3D5767541E6804110025BC7E /* CGRect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +542,7 @@
 				3D5767401E66C8410025BC7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D5767411E66C8410025BC7E /* Build configuration list for PBXNativeTarget "ColorPickerTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +551,7 @@
 				3D5767431E66C8410025BC7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D5767441E66C8410025BC7E /* Build configuration list for PBXNativeTarget "ColorPickerUITests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +560,7 @@
 				3D5767461E66C8410025BC7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
