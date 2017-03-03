@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var colorPicker: UIView!
     
     private var components = [UIView]()
+    private var componentFrames = [CGRect]()
     
     private var colorPickerComponentSize: CGSize {
         get {
@@ -32,6 +33,31 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Methods
+    
+    private func setupComponents() {
+        let innerMargin: CGFloat = 5
+        let margin: CGFloat = 2
+        let rows = 80
+        let cols = 40
+        for row in 0..<rows {
+            for col in 0..<cols {
+                // random color
+                let color = UIColor.randomColor()
+                // component origin
+                let x = colorPicker.frame.minX + innerMargin + (margin + colorPickerComponentSize.width) * CGFloat(col)
+                let y = colorPicker.frame.minY + innerMargin + (margin + colorPickerComponentSize.height) * CGFloat(row)
+                // component
+                let component = UIView(frame: CGRect(x: x, y: y, width: colorPickerComponentSize.width, height: colorPickerComponentSize.height))
+                component.backgroundColor = color
+                component.tag = row * cols + col
+                components.append(component)
+                componentFrames.append(component.frame)
+                view.addSubview(component)
+            }
+        }
+    }
+    
+    // MARK: - Override Touches Methods
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
@@ -57,56 +83,20 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setupComponents() {        
-        let innerMargin: CGFloat = 5
-        let margin: CGFloat = 2
-        let rows = 20
-        let cols = 20
-        for row in 0..<rows {
-            for col in 0..<cols {
-                // random color
-                let color = UIColor.randomColor()
-                // component origin
-                let x = colorPicker.frame.minX + innerMargin + (margin + colorPickerComponentSize.width) * CGFloat(col)
-                let y = colorPicker.frame.minY + innerMargin + (margin + colorPickerComponentSize.height) * CGFloat(row)
-                // component
-                let component = UIView(frame: CGRect(x: x, y: y, width: colorPickerComponentSize.width, height: colorPickerComponentSize.height))
-                component.backgroundColor = color
-                component.tag = row * cols + col
-                components.append(component)
-                view.addSubview(component)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        if let tap = touches.first?.location(in: view){
+            for index in 0..<components.count {
+                let item = components[index]
+                let newFrame = CGRect(x: tap.x - item.frame.width / 2.0, y: tap.y - item.frame.height / 2.0, width: item.frame.width, height: item.frame.height)
+                UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+                    item.frame = newFrame
+                }, completion: { finished in
+                    UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+                        item.frame = self.componentFrames[index]
+                    }, completion: nil)
+                })
             }
         }
     }
-    
 }
-
-extension UIView {
-    
-    static func colorPicker(frame: CGRect) -> UIView {
-        let picker = UIView(frame: frame)
-        picker.backgroundColor = UIColor.white // or UIColor.black
-        let rows = 8
-        let cols = 8
-        let size = CGSize(width: frame.width / CGFloat(rows), height: frame.height / CGFloat(cols))
-        for row in 0..<rows {
-            for col in 0..<cols {
-                let index = col + row * cols
-                
-                let component = UIView()
-                component.tag = index
-                component.frame = CGRect(x: CGFloat(col) * size.width, y: CGFloat(row) * size.height, width: size.width, height: size.height)
-                
-                component.backgroundColor = UIColor.randomColor()
-                
-                picker.addSubview(component)
-            }
-        }
-        return picker
-    }
-}
-
-
-
-
-
