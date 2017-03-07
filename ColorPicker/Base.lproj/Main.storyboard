@@ -22,13 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BIM-10-736">
-                        <barButtonItem key="rightBarButtonItem" title="Reset" id="uA6-sl-USa">
-                            <connections>
-                                <action selector="resetButtonAction:" destination="BYZ-38-t0r" id="OVe-iD-rBy"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="BIM-10-736"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
