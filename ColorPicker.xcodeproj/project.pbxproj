@@ -18,6 +18,7 @@
 		3D57674D1E67011E0025BC7E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57674C1E67011E0025BC7E /* Colors.swift */; };
 		3D5767541E6804110025BC7E /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5767531E6804110025BC7E /* CGRect.swift */; };
 		3D5E03AD1E69AF5B00C2E476 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5E03AC1E69AF5B00C2E476 /* ColorPicker.swift */; };
+		3D836CF31E6EC15100BECC91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D836CF21E6EC15100BECC91 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		3D57674C1E67011E0025BC7E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3D5767531E6804110025BC7E /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		3D5E03AC1E69AF5B00C2E476 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		3D836CF21E6EC15100BECC91 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				3D57671B1E66C8410025BC7E /* ViewController.swift */,
 				3D57674C1E67011E0025BC7E /* Colors.swift */,
 				3D5E03AC1E69AF5B00C2E476 /* ColorPicker.swift */,
+				3D836CF21E6EC15100BECC91 /* Constants.swift */,
 			);
 			path = ColorPicker;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				3D57674D1E67011E0025BC7E /* Colors.swift in Sources */,
 				3D57674A1E66ED2F0025BC7E /* UIColor.swift in Sources */,
 				3D57671A1E66C8410025BC7E /* AppDelegate.swift in Sources */,
+				3D836CF31E6EC15100BECC91 /* Constants.swift in Sources */,
 				3D5767541E6804110025BC7E /* CGRect.swift in Sources */,
 				3D5E03AD1E69AF5B00C2E476 /* ColorPicker.swift in Sources */,
 			);

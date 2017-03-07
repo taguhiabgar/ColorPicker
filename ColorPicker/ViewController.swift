@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ColorPickerDelegate {
     
     var colorPicker: ColorPicker? = nil
     
@@ -18,19 +18,20 @@ class ViewController: UIViewController {
     }
     
     private func updateView() {
-        
         let frame = CGRect(x: 100, y: 100, width: 200, height: 200)
         colorPicker = ColorPicker(frame: frame)
         if colorPicker != nil {
-            colorPicker?.backgroundColor = UIColor.gray
-            colorPicker?.innerMargin = 0
+            colorPicker?.delegate = self
+            colorPicker?.backgroundColor = UIColor.black
+            colorPicker?.innerMargin = 3
             colorPicker?.margin = 3
             colorPicker?.update()
-            for item in (colorPicker?.components)! {
-                item.layer.cornerRadius = item.frame.width / 2.0
-            }
         }
         view.addSubview(colorPicker!)
+    }
+    
+    func didPick(_ color: UIColor) {
+        view.backgroundColor = color
     }
     
 }

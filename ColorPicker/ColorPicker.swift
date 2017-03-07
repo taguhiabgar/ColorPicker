@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol ColorPickerDelegate {
+    func didPick(_ color: UIColor)
+}
+
 class ColorPicker: UIView {
     
     // MARK: - Properties
     
     // public
+    
+    public var delegate: ColorPickerDelegate?
     
     public var componentZoomCoefficient: CGFloat = 1.5
     
@@ -22,21 +28,13 @@ class ColorPicker: UIView {
     
     public var components = [UIView]()
     
+    public var colors = defaultColors // Array<Array<UIColor>>
+    
     // private
     
     private var componentFrames = [CGRect]()
     
-    private let rows = 8
-    
-    private let cols = 8
-    
-    private var colorPickerComponentSize: CGSize {
-        get {
-            let w = (frame.width - 2 * innerMargin - CGFloat(cols - 1) * margin) / CGFloat(cols)
-            let h = (frame.height - 2 * innerMargin - CGFloat(rows - 1) * margin) / CGFloat(rows)
-            return CGSize(width: w, height: h)
-        }
-    }
+    private var lastPickedColor: UIColor?
     
     // MARK: - Lifecycle Methods
     
@@ -55,17 +53,20 @@ class ColorPicker: UIView {
     public func update() {
         removeComponents()
         // setup new components
-        for row in 0..<rows {
-            for col in 0..<cols {
-                // random color
-                let color = UIColor.randomColor()
+        for row in 0..<colors.count {
+            for col in 0..<colors[row].count {
+                let color = colors[row][col]
+                // component size
+                let w = (frame.width - 2 * innerMargin - CGFloat(colors[row].count - 1) * margin) / CGFloat(colors[row].count)
+                let h = (frame.height - 2 * innerMargin - CGFloat(colors.count - 1) * margin) / CGFloat(colors.count)
+                let colorPickerComponentSize = CGSize(width: w, height: h)
                 // component origin
                 let x = innerMargin + (margin + colorPickerComponentSize.width) * CGFloat(col)
                 let y = innerMargin + (margin + colorPickerComponentSize.height) * CGFloat(row)
                 // component
                 let component = UIView(frame: CGRect(x: x, y: y, width: colorPickerComponentSize.width, height: colorPickerComponentSize.height))
                 component.backgroundColor = color
-                component.tag = row * cols + col
+                component.tag = row * colors[row].count + col
                 components.append(component)
                 componentFrames.append(component.frame)
                 addSubview(component)
@@ -95,6 +96,7 @@ class ColorPicker: UIView {
                     continue
                 }
                 if touchFrame.intersects(component.frame) {
+                    lastPickedColor = component.backgroundColor                    
                     let oldFrame = componentFrames[index]
                     UIView.animate(withDuration: 0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
                         component.frame = CGRect.biggerFrame(of: component.frame, coefficient: self.componentZoomCoefficient)
@@ -110,15 +112,11 @@ class ColorPicker: UIView {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        if lastPickedColor != nil {
+            delegate?.didPick(lastPickedColor!)
+        }
         if touches.count > 0 {
-            var touchesArray = Array<UITouch>()
-            for touch in touches {
-                touchesArray.append(touch)
-            }
-            if !touchesArray.isEmpty {
-                let randomIndex = Int(arc4random()) % touchesArray.count
-                let tap = touchesArray[randomIndex].location(in: self)
-                
+            if let tap = touches.first?.location(in: self) {
                 for index in 0..<components.count {
                     let item = components[index]
                     let newFrame = CGRect(x: tap.x - item.frame.width / 2.0, y: tap.y - item.frame.height / 2.0, width: item.frame.width, height: item.frame.height)
